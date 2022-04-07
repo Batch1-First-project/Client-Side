@@ -2,34 +2,34 @@
 <html>
     <head></head>
     <body>
-        <div  style="height:100vh" class=" d-flex flex-row justify-content-center align-items-center p-5 ">
-        <form #myForm= "ngForm"  style="border-radius:10px;padding:30px" class="bg-info ">
+        <div  style=" background-color: beige; height:100vh" class=" d-flex flex-row justify-content-center align-items-center p-5 ">
+        <form #myForm= "ngForm" (ngSubmit)="onsubmit()" style="border-radius:10px;padding:30px" class="bg-info ">
             <div clas="text-center"><h2>Registration Form</h2>
             </div>
             <div class="mb-3">
                 <label for="exampleInputFname" class="form-label">First Name</label>
-                <input type="text"  class="form-control" id="exampleInputFname" placeholder="Enter your firstname" name="fname" #fname="ngModel" [class.is-invalid]="fname.invalid && fname.touched"  ngModel required="">
+                <input type="text"  class="form-control" id="exampleInputFname" placeholder="Enter your firstname" name="fname" #fname="ngModel" [class.is-invalid]="fname.invalid && fname.touched"  [(ngModel)]="user.first_name" required="">
                 <small class="text-danger" *ngIf="fname.touched && fname.invalid">Firstname Required</small> 
             </div>
               <div class="mb-3">
                 <label for="exampleInputLname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="exampleInputLname"placeholder="Enter your Lastname"name="lname" #lname="ngModel" [class.is-invalid]="lname.invalid && lname.touched" ngModel required="">
+                <input type="text" class="form-control" id="exampleInputLname"placeholder="Enter your Lastname"name="lname" #lname="ngModel" [class.is-invalid]="lname.invalid && lname.touched"[(ngModel)]="user.last_name" required="">
                 <small class="text-danger" *ngIf="lname.touched && lname.invalid">Lastname Required</small>
             </div>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your mail id" name="mail" #mail="ngModel" [class.is-invalid]="mail.invalid && mail.touched" ngModel required="">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your mail id" name="mail" #mail="ngModel" [class.is-invalid]="mail.invalid && mail.touched" [(ngModel)]="user.email" required="">
               <small class="text-danger" *ngIf="mail.touched && mail.invalid">Email Required</small>
             </div>
             <div class="mb-3">
                 <label for="exampleInputUname" class="form-label">Username</label>
-                <input type="text" class="form-control" id="exampleInputUname"placeholder="Enter your username"name="uname" #uname="ngModel" [class.is-invalid]="uname.invalid && uname.touched" ngModel required="">
+                <input type="text" class="form-control" id="exampleInputUname"placeholder="Enter your username"name="uname" #uname="ngModel" [class.is-invalid]="uname.invalid && uname.touched" [(ngModel)]="user.username" required="">
                 <small class="text-danger" *ngIf="uname.touched && uname.invalid">Username Required</small>
             </div>
               <div class="mb-3">
                 <label for="exampleInputPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword" placeholder="Enter your password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" 
-                name="password" #password="ngModel"   ngModel required="">  
+                name="password" #password="ngModel"   [(ngModel)]="user.password" required="">  
                 <small class="text-danger" *ngIf="password.errors?.['pattern'] && password.touched">Password should have one alphabet and one number and one special character</small>  
               </div>
             <div class="mb-3">
@@ -38,7 +38,7 @@
               <small class="text-danger" *ngIf="cpassword.touched && cpassword.value != password.value">Password should be same</small>
                 
             </div>
-            <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex flex-row justify-content-between">
            
             <button type="Register" class="btn btn-primary" [disabled]="myForm.form.invalid || cpassword.value != password.value">Submit</button>
             <a routerLink="/login">Already have an Account</a>

@@ -1,0 +1,12 @@
+.im{
+    height: 150px;
+    width: 150px;
+    cursor: zoom-in;
+    overflow: hidden;
+    transition: transform .2s;
+    border-radius: 5px;
+}
+.im:hover{
+    transform: scale(1.5);
+}
+
